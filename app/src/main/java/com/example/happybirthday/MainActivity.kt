@@ -3,11 +3,8 @@ package com.example.happybirthday
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.Image//this for the drawable image from the resources
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -32,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    GreetingText(message = "Happy Birthday Joel!", from = "from Watson")
+                    GreetingImage(message = "Happy Birthday Joel!", from = "from Watson")
                 }
             }
         }
@@ -65,11 +62,20 @@ fun GreetingText(message : String, from : String ,modifier : Modifier = Modifier
 @Composable
 fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
     val image = painterResource(R.drawable.androidparty)
+    Box{
+        Image(
+            painter = image,
+            contentDescription = null
+        )
+        GreetingText(
+            message = message,
+            from = from,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(8.dp)
+            )
+    }
 
-    Image(
-        painter = image,
-        contentDescription = null
-    )
 }
 
 @Preview(showBackground = false)
